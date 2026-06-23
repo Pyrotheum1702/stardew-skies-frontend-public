@@ -1,0 +1,36 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "plant-idle",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 1.5,
+  "sample": 60,
+  "speed": 0.5,
+  "wrapMode": 22,
+  "curveData": {
+    "props": {
+      "angle": [
+        {
+          "frame": 0,
+          "value": 0,
+          "curve": "sineInOut"
+        },
+        {
+          "frame": 0.48333333333333334,
+          "value": 3,
+          "curve": "sineInOut"
+        },
+        {
+          "frame": 1,
+          "value": 0,
+          "curve": "sineInOut"
+        },
+        {
+          "frame": 1.5,
+          "value": -3
+        }
+      ]
+    }
+  },
+  "events": []
+}

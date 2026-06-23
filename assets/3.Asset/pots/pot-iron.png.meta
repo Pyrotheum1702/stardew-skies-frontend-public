@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "d6105d42-4ea7-4ce9-a441-cbe89c4713fe",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 220,
+  "height": 220,
+  "platformSettings": {},
+  "subMetas": {
+    "pot-iron": {
+      "ver": "1.0.6",
+      "uuid": "4f47dca7-62ef-4fc3-9f33-b70b4aaf3fff",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "d6105d42-4ea7-4ce9-a441-cbe89c4713fe",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": -4,
+      "trimX": 42,
+      "trimY": 45,
+      "width": 136,
+      "height": 138,
+      "rawWidth": 220,
+      "rawHeight": 220,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

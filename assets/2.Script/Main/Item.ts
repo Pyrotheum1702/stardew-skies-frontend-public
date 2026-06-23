@@ -1,0 +1,3 @@
+export let SERVER_DYNAMIC_CONFIGURATIONS = {
+   ITEMS: {},
+} 
