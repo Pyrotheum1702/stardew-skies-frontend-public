@@ -38,7 +38,7 @@ See [Unused/Deprecated Code Analysis](#unuseddeprecated-code-analysis) section f
 - **Build Target:** Web-Mobile
 
 ### Dependencies
-- **@types/node** (v22.9.3) - Node.js type definitions (Dev dependency)
+- None — the project has no npm dependencies. Cocos Creator builds with its own bundled engine/toolchain.
 
 ### Configuration
 - **TypeScript Config:**

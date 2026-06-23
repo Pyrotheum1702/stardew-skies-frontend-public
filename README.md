@@ -42,8 +42,6 @@ A web-based farming simulation game built with Cocos Creator. Plant seeds, water
 Before you begin, ensure you have the following installed:
 
 - [Cocos Creator 2.4.13](https://www.cocos.com/en/creator/download)
-- [Node.js](https://nodejs.org/) (v14 or higher)
-- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 - Git
 
 ## 🚀 Installation
@@ -54,12 +52,7 @@ Before you begin, ensure you have the following installed:
    cd stardew-skies-frontend-public
    ```
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Open in Cocos Creator**
+2. **Open in Cocos Creator**
    - Launch Cocos Creator 2.4.13
    - Click "Open Other Projects"
    - Navigate to the `stardew-skies-frontend-public` directory
@@ -253,7 +246,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Built with [Cocos Creator](https://www.cocos.com/en/creator)
 - Powered by [Telegram WebApp API](https://core.telegram.org/bots/webapps)
-- TypeScript support via [@types/node](https://www.npmjs.com/package/@types/node)
 
 ---
 
