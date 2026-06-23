@@ -42,7 +42,7 @@ export default class MainCtrl extends cc.Component {
                callTutorialDialog(
                   [
                      `Welcome to Garden Farm 🪴, where ☁️ cloud-based farming meets blockchain rewards. 💰💰💰`,
-                     `Your mission is to build the most thriving sky garden by 🪴 planting, ✂️ harvesting, 📝 completing tasks, and earning rewards 💰— all while climbing higher through the clouds. ☁️`
+                     `Your mission is to build the most thriving garden in Stardew Skies by 🪴 planting, ✂️ harvesting, 📝 completing tasks, and earning rewards 💰— all while climbing higher through the clouds. ☁️`
                   ],
                   this.startTutorialSequence.bind(this)
                );

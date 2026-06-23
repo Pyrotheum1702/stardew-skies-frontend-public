@@ -1,4 +1,4 @@
-# 🌱 Sky Garden
+# 🌱 Stardew Skies
 
 A web-based farming simulation game built with Cocos Creator. Plant seeds, water crops, expand your garden across multiple floors, and compete with friends on the leaderboard! Compatible with Telegram WebApp for seamless in-app gaming.
 
@@ -50,8 +50,8 @@ Before you begin, ensure you have the following installed:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Pyrotheum1702/sky-garden.git
-   cd sky-garden
+   git clone https://github.com/Pyrotheum1702/stardew-skies-frontend-public.git
+   cd stardew-skies-frontend-public
    ```
 
 2. **Install dependencies**
@@ -62,7 +62,7 @@ Before you begin, ensure you have the following installed:
 3. **Open in Cocos Creator**
    - Launch Cocos Creator 2.4.13
    - Click "Open Other Projects"
-   - Navigate to the `sky-garden` directory
+   - Navigate to the `stardew-skies-frontend-public` directory
    - Open the project
 
 ## 💻 Development
@@ -70,7 +70,7 @@ Before you begin, ensure you have the following installed:
 ### Project Structure
 
 ```
-sky-garden/
+stardew-skies/
 ├── assets/
 │   ├── 0.Fonts/              # Font resources
 │   ├── 1.Scene/              # Cocos Creator scenes
@@ -242,7 +242,7 @@ See [Unused/Deprecated Code Analysis](PROJECT_DEVELOPMENT_DESCRIPTION.md#unusedd
 ## 📞 Support
 
 For issues and questions:
-- **Issues:** [GitHub Issues](https://github.com/Pyrotheum1702/sky-garden/issues)
+- **Issues:** [GitHub Issues](https://github.com/Pyrotheum1702/stardew-skies-frontend-public/issues)
 - **Documentation:** [PROJECT_DEVELOPMENT_DESCRIPTION.md](PROJECT_DEVELOPMENT_DESCRIPTION.md)
 
 ## 📜 License

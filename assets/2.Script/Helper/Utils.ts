@@ -386,7 +386,7 @@ export default class Utils extends cc.Component {
 
    public static async sendRequest(param = null, onComplete = null, onError = null) {
       let method = "POST";
-      let url = 'http://localhost:10000/sky-garden-test/api/request';
+      let url = 'http://localhost:10000/stardew-skies-test/api/request';
       let canceled = false;
 
       if (location.pathname.includes("game")) { url = 'https://piratekings.fun/api/request' }

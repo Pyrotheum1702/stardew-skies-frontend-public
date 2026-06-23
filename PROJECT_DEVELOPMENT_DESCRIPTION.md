@@ -1,8 +1,8 @@
-# Sky Garden - Project Development Description
+# Stardew Skies - Project Development Description
 
 ## Project Overview
 
-**Project Name:** Sky Garden
+**Project Name:** Stardew Skies
 **Engine:** Cocos Creator 2.4.13 (Cocos2d-HTML5)
 **Language:** TypeScript
 **Platform:** Web-Mobile (Browser-based, Telegram WebApp compatible)
@@ -11,7 +11,7 @@
 
 ## Project Summary
 
-Sky Garden is a web-based farming simulation game with optional Telegram WebApp compatibility. Players can plant seeds, water plants, add fertilizer, harvest crops, and expand their garden across multiple floors. The game includes social features like leaderboards, referral systems, and task completion mechanics. Can be played standalone in any web browser or integrated as a Telegram Mini App.
+Stardew Skies is a web-based farming simulation game with optional Telegram WebApp compatibility. Players can plant seeds, water plants, add fertilizer, harvest crops, and expand their garden across multiple floors. The game includes social features like leaderboards, referral systems, and task completion mechanics. Can be played standalone in any web browser or integrated as a Telegram Mini App.
 
 ## ⚠️ Code Health Status
 
@@ -50,7 +50,7 @@ See [Unused/Deprecated Code Analysis](#unuseddeprecated-code-analysis) section f
 ## Project Structure
 
 ```
-sky-garden/
+stardew-skies/
 ├── assets/
 │   ├── 0.Fonts/           # Font resources
 │   ├── 1.Scene/           # Cocos Creator scenes
