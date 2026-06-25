@@ -1,3 +1,4 @@
+import Api from "../../Network/Api";
 import { CONFIG, REQUEST_OPERATION } from "../../Config/Config";
 import { GlobalVar } from "../../Helper/GlobalVar";
 import { callLoadingDialog } from "../../Helper/Loading/LoadingDialog";
@@ -65,7 +66,7 @@ export default class RedeemCodePanel extends cc.Component {
          this.submitCodeEditBox.string = ""
       })
 
-      Utils.sendRequest({
+      Api.sendRequest({
          operation: REQUEST_OPERATION.SUBMIT_GIFT_CODE,
          code: codeUse
       }, (response) => {

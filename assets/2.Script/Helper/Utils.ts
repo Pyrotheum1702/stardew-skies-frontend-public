@@ -1,4 +1,3 @@
-import { GlobalVar } from "./GlobalVar";
 // import * as XMLParser from 'fast-xml-parser';
 
 const { ccclass, property } = cc._decorator;
@@ -382,59 +381,6 @@ export default class Utils extends cc.Component {
       let numberString = number.toString();
       let formattedString = numberString.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
       return formattedString;
-   }
-
-   public static async sendRequest(param = null, onComplete = null, onError = null) {
-      let method = "POST";
-      let url = 'http://localhost:10000/stardew-skies-test/api/request';
-      let canceled = false;
-
-      if (location.pathname.includes("game")) { url = 'https://piratekings.fun/api/request' }
-
-      try {
-         let xhr = new XMLHttpRequest();
-         xhr.addEventListener("readystatechange", () => {
-            if (canceled) return;
-            if (xhr.readyState === 4 && (xhr.status >= 200 && xhr.status < 400)) {
-               let data: any = {};
-               data.status = xhr.status;
-               if (xhr.responseText != null && xhr.responseText != '')
-                  try { data = JSON.parse(xhr.responseText) } catch (e) { console.log("Err :", e) }
-               if (onComplete)
-                  onComplete(data)
-            } else if (xhr.readyState === 4) {
-               const data = JSON.parse(xhr.responseText)
-               data.status = xhr.status;
-               if (onError) onError(data)
-            }
-         });
-
-         xhr.open(method, url, true);
-         xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-         xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-         xhr.timeout = 15000;
-
-         if (param != null) {
-            if (GlobalVar.profile?.uuid) param.uuid = GlobalVar.profile.uuid;
-            if (GlobalVar.accessToken) param.accessToken = GlobalVar.accessToken;
-            xhr.send(JSON.stringify(param));
-         } else { throw new Error(`request parameter is empty.`); }
-
-         xhr.onerror = (error) => {
-            canceled = true;
-            console.log("request error:", error);
-            if (onError) onError({ message: `Can not connect to the server!` });
-         }
-         xhr.ontimeout = () => {
-            canceled = true;
-            console.log("request timeout.");
-            if (onError) onError({ message: `Timeout!` });
-         }
-      } catch (e) {
-         canceled = true;
-         console.log("send request error:", e);
-         if (onError) onError({ message: e.toString() });
-      }
    }
 
    public static shake(node: cc.Node, iter, intervalTime, originalPos, minDis = 5, maxDis = 10, onComplete = null) {

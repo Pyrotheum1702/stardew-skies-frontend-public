@@ -1,3 +1,4 @@
+import Api from "../../Network/Api";
 import { REQUEST_OPERATION } from "../../Config/Config";
 import { TASK_STATE } from "../../Config/Constant";
 import { GlobalVar } from "../../Helper/GlobalVar";
@@ -69,7 +70,7 @@ export default class Leaderboard extends cc.Component {
 
       if (taskData) {
          onResponse(taskData);
-      } else Utils.sendRequest({
+      } else Api.sendRequest({
          operation: REQUEST_OPERATION.GET_LEADERBOARD,
       }, (response) => {
          onResponse(response);

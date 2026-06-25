@@ -1,3 +1,4 @@
+import Api from "../../Network/Api";
 import { REQUEST_OPERATION } from "../../Config/Config";
 import { GlobalVar } from "../../Helper/GlobalVar";
 import { callLoadingDialog, callInvisibleLoadingDialog } from "../../Helper/Loading/LoadingDialog";
@@ -47,7 +48,7 @@ export default class LuckySpin extends cc.Component {
             resolve(null);
          })
 
-         Utils.sendRequest({
+         Api.sendRequest({
             operation: REQUEST_OPERATION.GET_LUCKY_SPIN_WHEEL,
          }, (response) => {
             if (CC_DEV) console.log({ fetchLuckySpinWheel: response });
@@ -139,7 +140,7 @@ export default class LuckySpin extends cc.Component {
 
       Utils.mushroomBounceNode(this.content, 0.2, null, 0.015);
 
-      Utils.sendRequest({
+      Api.sendRequest({
          operation: REQUEST_OPERATION.SPIN_LUCKY_WHEEL,
       }, (response) => {
          loading.endImmediately();

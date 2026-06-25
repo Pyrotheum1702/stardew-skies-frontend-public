@@ -1,3 +1,4 @@
+import Api from "../../Network/Api";
 import { REQUEST_OPERATION, CONFIG } from "../../Config/Config";
 import { GlobalVar } from "../../Helper/GlobalVar";
 import { callLoadingDialog } from "../../Helper/Loading/LoadingDialog";
@@ -81,7 +82,7 @@ export default class GardenFloorBuilder extends cc.Component {
    async fetchGardenData(): Promise<any> {
       return new Promise((resolve, reject) => {
          let loading = callLoadingDialog(15, () => { callTextNotification(4, `Timeout!`, TextNotificationBGColor.RED); });
-         Utils.sendRequest({
+         Api.sendRequest({
             operation: REQUEST_OPERATION.GET_GARDEN,
          }, (response) => {
             loading.endImmediately();
@@ -259,7 +260,7 @@ export default class GardenFloorBuilder extends cc.Component {
       const lastFloor = this.floors[this.floors.length - 1];
       let loading = callLoadingDialog(4, () => { callTextNotification(4, `Timeout!`, TextNotificationBGColor.RED); });
 
-      Utils.sendRequest({
+      Api.sendRequest({
          operation: REQUEST_OPERATION.ADD_FLOOR,
          floor: newFloorIndex,
       }, (response) => {

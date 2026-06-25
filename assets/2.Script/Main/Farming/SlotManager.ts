@@ -1,3 +1,4 @@
+import Api from "../../Network/Api";
 import { REQUEST_OPERATION, CONFIG } from "../../Config/Config";
 import AnimationOnEnable, { ANIM_TYPE } from "../../Helper/AnimationOnEnable";
 import { callFloatingText } from "../../Helper/FloatingText";
@@ -85,7 +86,7 @@ export default class SlotManager extends cc.Component {
       if (!slot.interactable) return;
       slot.interactable = false;
 
-      Utils.sendRequest({
+      Api.sendRequest({
          operation: REQUEST_OPERATION.PLACE_POT,
          floor: slot.floorIndex,
          slot: slot.slotIndex,
@@ -125,7 +126,7 @@ export default class SlotManager extends cc.Component {
       if (!slot.interactable) return;
       slot.interactable = false;
 
-      Utils.sendRequest({
+      Api.sendRequest({
          operation: REQUEST_OPERATION.PLANT_SEED,
          floor: slot.floorIndex,
          slot: slot.slotIndex,
@@ -166,7 +167,7 @@ export default class SlotManager extends cc.Component {
       if (!slot.interactable) return;
       slot.interactable = false;
 
-      Utils.sendRequest({
+      Api.sendRequest({
          operation: REQUEST_OPERATION.WATER_PLANT,
          slot: plant.slot.slotIndex,
          floor: plant.slot.floorIndex,
@@ -221,7 +222,7 @@ export default class SlotManager extends cc.Component {
       if (!slot.interactable) return;
       slot.interactable = false;
 
-      Utils.sendRequest({
+      Api.sendRequest({
          operation: REQUEST_OPERATION.ADD_FERTILIZER,
          floor: slot.floorIndex,
          slot: slot.slotIndex,
@@ -258,7 +259,7 @@ export default class SlotManager extends cc.Component {
       if (!slot.interactable) return;
       slot.interactable = false;
 
-      Utils.sendRequest({
+      Api.sendRequest({
          operation: REQUEST_OPERATION.CATCH_BUG,
          floor: slot.floorIndex,
          slot: slot.slotIndex,
@@ -286,7 +287,7 @@ export default class SlotManager extends cc.Component {
       slot.interactable = false;
 
       slot.plant.harvested = true;
-      Utils.sendRequest({
+      Api.sendRequest({
          operation: REQUEST_OPERATION.HARVEST_PLANT,
          floor: slot.floorIndex,
          slot: slot.slotIndex,

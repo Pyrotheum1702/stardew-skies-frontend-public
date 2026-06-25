@@ -1,5 +1,5 @@
 
-import { CONFIG } from "../Config/Config";
+import { CONFIG, ENV } from "../Config/Config";
 import { GlobalVar } from "../Helper/GlobalVar";
 import { callLoadingDialog } from "../Helper/Loading/LoadingDialog";
 import SoundPlayer from "../Helper/SoundPlayer";
@@ -38,8 +38,8 @@ export default class LoadController extends cc.Component {
       }
 
       this.loginPanel.node.active = true;
-      // if (location.origin.includes('localhost')) this.loginPanel.loginWithSessionToken(`pyro-test-unit-${Utils.random(1, 1000)}`);
-      if (location.origin.includes('localhost')) this.loginPanel.loginWithSessionToken(`1111`);
+      // Local dev: LOGIN_TELEGRAM with no initAppData returns a fake-user JWT (see API_INTEGRATION.md "Testing").
+      if (ENV.isLocal) this.loginPanel.loginWithTelegram();
    }
 
    private getErrorParam() {

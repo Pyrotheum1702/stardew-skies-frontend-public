@@ -1,3 +1,46 @@
+/**
+ * Environment / deployment configuration.
+ *
+ * Single source of truth for anything that changes between local development
+ * and the deployed game: API endpoints, request limits, and the environment
+ * detection used to pick between them.
+ */
+const API_BASE = {
+   local: "http://localhost:10000/stardew-skies-test",
+   production: "https://pyrotheum1702.com/stardew-skies",
+};
+
+export const ENV = {
+   /** True when the build is served from the public game path (production). */
+   get isProduction(): boolean {
+      return location.pathname.includes("game");
+   },
+
+   /** True for local development (inverse of {@link ENV.isProduction}). */
+   get isLocal(): boolean {
+      return !ENV.isProduction;
+   },
+
+   API: {
+      timeoutMs: 15000,
+
+      /** Backend base URL for the current environment (no trailing path). */
+      get base(): string {
+         return ENV.isProduction ? API_BASE.production : API_BASE.local;
+      },
+
+      /** The single operation-routed request endpoint. */
+      get url(): string {
+         return `${ENV.API.base}/api/request`;
+      },
+
+      /** Twitter/web OAuth entry point (browser redirect). */
+      get twitterLoginUrl(): string {
+         return `${ENV.API.base}/api/login/twitter`;
+      },
+   },
+};
+
 export const CONFIG = {
    ver: `1.0.0`,
 

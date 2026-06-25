@@ -1,7 +1,7 @@
+import Api from "../Network/Api";
 import { REQUEST_OPERATION } from "../Config/Config";
 import { GlobalVar } from "../Helper/GlobalVar";
 import { callLoadingDialog } from "../Helper/Loading/LoadingDialog";
-import Utils from "../Helper/Utils";
 import { callTextNotification, TextNotificationBGColor } from "../Notification/TextNotification";
 import GardenFloorBuilder from "./GardenFloorBuilder/GardenFloorBuilder";
 import UIController, { UI_VIEW_MODE } from "./UI/UIController";
@@ -35,7 +35,7 @@ export default class GardenController extends cc.Component {
    async fetchGardenData(gardenUUID): Promise<any> {
       return new Promise((resolve, reject) => {
          let loading = callLoadingDialog(15, () => { callTextNotification(4, `Timeout!`, TextNotificationBGColor.RED); });
-         Utils.sendRequest({
+         Api.sendRequest({
             operation: REQUEST_OPERATION.SPECTATE_GARDEN,
             gardenUUID: gardenUUID,
          }, (response) => {

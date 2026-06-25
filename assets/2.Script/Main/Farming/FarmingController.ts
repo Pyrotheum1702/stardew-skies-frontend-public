@@ -1,4 +1,3 @@
-import { time } from "console";
 import { CONFIG } from "../../Config/Config";
 import AnimationOnEnable from "../../Helper/AnimationOnEnable";
 import Drawer from "../../Helper/Drawer";

@@ -1,3 +1,4 @@
+import Api from "../../Network/Api";
 import ShopItem from "./ShopItem";
 import Utils from "../../Helper/Utils";
 import { REQUEST_OPERATION, CONFIG } from "../../Config/Config";
@@ -98,7 +99,7 @@ export default class Shop extends cc.Component {
          if (cc.isValid(pageLoading)) Utils.fadeInNode(pageLoading);
       }, 0.2);
 
-      Utils.sendRequest({
+      Api.sendRequest({
          operation: REQUEST_OPERATION.GET_SHOP,
          page: page,
       }, (response) => {

@@ -1,3 +1,4 @@
+import Api from "../../Network/Api";
 import { REQUEST_OPERATION } from "../../Config/Config";
 import { TASK_STATE } from "../../Config/Constant";
 import { GlobalVar } from "../../Helper/GlobalVar";
@@ -64,7 +65,7 @@ export default class Task extends cc.Component {
 
       if (taskData) {
          onResponse(taskData);
-      } else Utils.sendRequest({
+      } else Api.sendRequest({
          operation: REQUEST_OPERATION.GET_TASK,
       }, (response) => {
          onResponse(response)
@@ -172,7 +173,7 @@ export default class Task extends cc.Component {
          callTextNotification(3, "Timeout.", TextNotificationBGColor.RED);
       });
 
-      Utils.sendRequest({
+      Api.sendRequest({
          operation: REQUEST_OPERATION.DO_TASK,
          key: CED,
       }, (response) => {

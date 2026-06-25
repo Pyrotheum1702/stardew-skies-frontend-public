@@ -1,3 +1,4 @@
+import Api from "../../Network/Api";
 import { REQUEST_OPERATION, CONFIG } from "../../Config/Config";
 import { GlobalVar } from "../../Helper/GlobalVar";
 import { callLoadingDialog } from "../../Helper/Loading/LoadingDialog";
@@ -129,7 +130,7 @@ Note: You can only fertilize a plant once.`;
          callTextNotification(4, `Timeout!`, TextNotificationBGColor.RED)
       })
 
-      Utils.sendRequest({
+      Api.sendRequest({
          operation: REQUEST_OPERATION.MAKE_SHOP_PURCHASE,
          page: this.currentPage,
          buyAmount: targetBuyAmount,
@@ -161,4 +162,3 @@ Note: You can only fertilize a plant once.`;
       this.onExitCallback?.();
    }
 }
-

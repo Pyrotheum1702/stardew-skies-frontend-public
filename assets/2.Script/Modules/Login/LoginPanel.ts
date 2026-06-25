@@ -1,4 +1,5 @@
-import { REQUEST_OPERATION, CONFIG } from "../../Config/Config";
+import Api from "../../Network/Api";
+import { REQUEST_OPERATION, CONFIG, ENV } from "../../Config/Config";
 import { GlobalVar } from "../../Helper/GlobalVar";
 import { callLoadingDialog } from "../../Helper/Loading/LoadingDialog";
 import LocalStorage from "../../Helper/LocalStorage";
@@ -64,9 +65,10 @@ export default class LoginPanel extends cc.Component {
       })
 
       const refCode = this.getRefParam();
-      Utils.sendRequest({
+      Api.sendRequest({
          operation: REQUEST_OPERATION.LOGIN_TELEGRAM,
-         initAppData: GlobalVar.webApp.initData,
+         // Optional in local backend mode (returns a fake-user JWT) — see API_INTEGRATION.md.
+         initAppData: GlobalVar.webApp?.initData,
          refCode: refCode,
       }, (response) => {
          try {
@@ -117,7 +119,7 @@ export default class LoginPanel extends cc.Component {
       })
 
       const refCode = this.getRefParam();
-      Utils.sendRequest({
+      Api.sendRequest({
          operation: REQUEST_OPERATION.LOGIN,
          sessionToken: sessionToken,
          refCode: refCode,
@@ -255,7 +257,7 @@ export default class LoginPanel extends cc.Component {
    async loginWithTwitter(onComplete = null, onError = null) {
       try {
          const ref = this.getRefParam();
-         const url = `${window.location.origin}/api/login/twitter${ref ? `?refCode=${encodeURIComponent(ref)}` : ''}`;
+         const url = `${ENV.API.twitterLoginUrl}${ref ? `?refCode=${encodeURIComponent(ref)}` : ''}`;
          window.location.href = url;
       } catch (err) {
          console.error('Twitter login failed:', err);
