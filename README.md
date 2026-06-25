@@ -66,23 +66,25 @@ Before you begin, ensure you have the following installed:
 stardew-skies/
 ├── assets/
 │   ├── 0.Fonts/              # Font resources
-│   ├── 1.Scene/              # Cocos Creator scenes
-│   │   ├── Load.fire         # Loading/Login scene
-│   │   └── Main.fire         # Main game scene
+│   ├── 1.Scene/              # Cocos Creator scenes (NOT in the public repo — see note below)
 │   ├── 2.Script/             # TypeScript source code
-│   │   ├── Config/           # Configuration files
+│   │   ├── Config/           # Config, ENV/deploy settings, operation codes
 │   │   ├── Helper/           # Utility functions
+│   │   ├── Load/             # Loading / login bootstrap
 │   │   ├── Main/             # Main game logic
-│   │   ├── Modules/          # Feature modules
-│   │   ├── Notification/     # Notification system
-│   │   └── TelegramWebapp/   # Telegram integration
+│   │   ├── Modules/          # Feature modules (Shop, Task, Leaderboard, LuckySpin, …)
+│   │   ├── Network/          # Backend API layer (Api service)
+│   │   └── Notification/     # Notification system
 │   ├── 3.Asset/              # Game assets (sprites, animations)
-│   ├── Audio/                # Sound effects and music
 │   └── Views/                # UI prefabs
 ├── build/                    # Build output
 ├── settings/                 # Project settings
 └── temp/                     # Temporary build files
 ```
+
+> **Note:** The scene files (`assets/1.Scene/`) are maintained in a separate
+> private repository and are **not** included here. After cloning, Cocos Creator
+> will open the project but the `Load` and `Main` scenes will be absent.
 
 ### Development Workflow
 
@@ -93,8 +95,9 @@ stardew-skies/
 ### Key Files
 
 - **[project.json](project.json)** - Cocos Creator project configuration
-- **[tsconfig.json](tsconfig.json)** - TypeScript compiler settings
-- **[package.json](package.json)** - Node.js dependencies
+- **[tsconfig.json](tsconfig.json)** - TypeScript settings for editor IntelliSense (Cocos Creator builds the game itself; the project has no npm dependencies)
+- **[assets/2.Script/Network/Api.ts](assets/2.Script/Network/Api.ts)** - Central backend API service
+- **[assets/2.Script/Config/Config.ts](assets/2.Script/Config/Config.ts)** - Environment config (`ENV`) and operation codes (`REQUEST_OPERATION`)
 - **[PROJECT_DEVELOPMENT_DESCRIPTION.md](PROJECT_DEVELOPMENT_DESCRIPTION.md)** - Detailed development documentation
 
 ## 🏗️ Building
@@ -127,21 +130,31 @@ Open `http://localhost:8000` in your browser.
 
 ## 🔌 API Integration
 
-The game communicates with a backend server for:
-- User authentication (supports multiple methods including Telegram WebApp)
-- Garden state persistence
-- Shop transactions
-- Leaderboard data
-- Task management
-- Reward distribution
+All backend communication goes through a single centralized service —
+[`Network/Api.ts`](assets/2.Script/Network/Api.ts):
 
-See [API Operations](PROJECT_DEVELOPMENT_DESCRIPTION.md#api-operations-request_operation) for full API documentation.
+- **One operation-routed endpoint.** Every gameplay call is a `POST` to one URL
+  with a numeric `operation` code (see `REQUEST_OPERATION` in
+  [`Config/Config.ts`](assets/2.Script/Config/Config.ts)) plus that operation's
+  params — there are no REST resource URLs.
+- **Environment-aware.** The base URL and request timeout come from `ENV` in
+  `Config.ts`; it selects local vs. production automatically.
+- **Session handling.** The user's `uuid` + access token are attached to every
+  request automatically; an HTTP `401` bounces the player back to login.
+- **Transport.** `fetch` + `AbortController`, with both `await` and callback
+  styles supported.
+
+It backs user authentication (incl. Telegram WebApp), garden persistence, shop
+transactions, leaderboard, tasks, and reward distribution.
+
+See [API Operations](PROJECT_DEVELOPMENT_DESCRIPTION.md#api-operations-request_operation) for the operation reference.
 
 ## 🎨 Game Modules
 
 | Module | Description |
 |--------|-------------|
-| **Login** | Telegram WebApp authentication |
+| **Api** (Network) | Centralized backend API service |
+| **Login** | Telegram WebApp / web authentication |
 | **MainCtrl** | Core game controller |
 | **GardenFloorBuilder** | Multi-floor garden management |
 | **FarmingController** | Plant lifecycle and farming mechanics |
@@ -149,6 +162,7 @@ See [API Operations](PROJECT_DEVELOPMENT_DESCRIPTION.md#api-operations-request_o
 | **Leaderboard** | Player rankings |
 | **Task** | Daily tasks and achievements |
 | **LuckySpin** | Lucky wheel mini-game |
+| **RedeemCode** | Gift code redemption |
 | **InventoryBar** | Player inventory management |
 | **TutorialDialog** | Tutorial system |
 
@@ -172,6 +186,12 @@ If you want to enable Telegram integration:
 The game works perfectly fine without Telegram integration.
 
 ## 🧪 Code Quality
+
+### Architecture & Cleanup (2026-06-25)
+- ✅ Extracted a dedicated network layer (`Network/Api.ts`) out of `Helper/Utils`
+- ✅ Centralized environment/deploy config in `Config.ts` (`ENV`)
+- ✅ Added centralized HTTP 401 → re-login handling
+- ✅ Removed npm tooling — the project has no runtime dependencies
 
 ### Recent Cleanup (2026-01-29)
 - ✅ Removed 3 unused dependencies (~2-3MB reduction)
@@ -210,7 +230,7 @@ Contributions are welcome! Please follow these guidelines:
 ## 🐛 Known Issues
 
 - Traditional username/password login UI is currently disabled (can be re-enabled)
-- Friend system module exists but not implemented
+- Referral system: the backend operation exists but no in-game UI is wired yet
 - Some legacy commented code pending cleanup
 
 See [Unused/Deprecated Code Analysis](PROJECT_DEVELOPMENT_DESCRIPTION.md#unuseddeprecated-code-analysis) for full list.
